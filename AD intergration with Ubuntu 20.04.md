@@ -67,4 +67,6 @@ access_provider = ad
 ```
 14. realm join theblackthreat.in --user=ravitbt
 ```
-
+```
+15. pam-auth-update --enable mkhomedir
+```
