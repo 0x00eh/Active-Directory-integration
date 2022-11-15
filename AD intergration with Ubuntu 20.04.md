@@ -1,28 +1,28 @@
 Ubuntu 20.04 canonical AD join WI
 ```
-1. sudo apt-get update
+sudo apt-get update
 ```
 ```
-2. sudo apt-get -y upgrade
+sudo apt-get -y upgrade
 ```
 ```
-3. hostnamectl set-hostname tbt_machine
+hostnamectl set-hostname tbt_machine
 ```
 ```
-4. vi /etc/hosts
+vi /etc/hosts
         172.16.2.35 tbt_machine.theblackthreat.in tbt_machine
 ```
 ```
-5. sudo apt -y install realmd sssd sssd-tools libnss-sss libpam-sss krb5-user samba-common adcli samba-common-bin oddjob oddjob-mkhomedir packagekit 
+sudo apt -y install realmd sssd sssd-tools libnss-sss libpam-sss krb5-user samba-common adcli samba-common-bin oddjob oddjob-mkhomedir packagekit 
 ```
 ```
-6. sudo apt install resolvconf
+sudo apt install resolvconf
 ```
 ```
-7. sudo systemctl start resolvconf.service
+sudo systemctl start resolvconf.service
 ```
 
-8. add nameserver to path : 
+add nameserver to path : 
 ```
 vi /etc/resolvconf/resolv.conf.d/head
                         search theblackthreat.in
@@ -30,16 +30,16 @@ vi /etc/resolvconf/resolv.conf.d/head
                         nameserver 172.16.2.122
 ```
 ```
-9. sudo systemctl start resolvconf.service
+sudo systemctl start resolvconf.service
 ```
 ```
-10. sudo vi /etc/krb5.conf
+sudo vi /etc/krb5.conf
         [libdefaults] 
         default_realm = theblackthreat.in 
         rdns = false 
 ```
 ```
-11. vi /etc/sssd/sssd.conf
+vi /etc/sssd/sssd.conf
 ```
 ```
 [sssd]
@@ -62,11 +62,11 @@ fallback_homedir = /home/%u@%d
 access_provider = ad
 ```
 ```
-13. systemctl restart sssd
+systemctl restart sssd
 ```
 ```
-14. realm join theblackthreat.in --user=ravitbt
+realm join theblackthreat.in --user=ravitbt
 ```
 ```
-15. pam-auth-update --enable mkhomedir
+pam-auth-update --enable mkhomedir
 ```
